@@ -13,6 +13,8 @@ import { GraficoDesigualdadesCuadraticas } from "./components/GraficoDesigualdad
 import { GraficoSistemasInecuaciones } from "./components/GraficoSistemasInecuaciones";
 import { GraficoRepresentaciones } from "./components/GraficoRepresentaciones";
 import { GraficoClasificacion } from "./components/GraficoClasificacion";
+import { ActividadRegleta } from "./components/ActividadRegleta";
+import { GraficoLogaritmos } from "./components/GraficoLogaritmos";
 
 // ── PALETA MODO CLARO ─────────────────────────────────────────────────────────
 const LIGHT = {
@@ -75,6 +77,67 @@ function ThemeProvider({ children }) {
   );
 }
 
+// ── RENDERIZADOR DE ENMALLADO GRÁFICO ─────────────────────────────────────────
+function GraficoEnmallado({ celda }) {
+  const { C } = useTheme();
+  const parts = celda.replace("[enmallado:", "").replace("]", "").split(":");
+  const tipo = parts[0];
+  const aVal = parts[1] || "a";
+  const bVal = parts[2] || "b";
+
+  const width = 160;
+  const height = 32;
+  const y = 16;
+  const x1 = 40;
+  const x2 = 120;
+
+  let circleLeft = null;
+  let circleRight = null;
+  let shadeStart = x1;
+  let shadeEnd = x2;
+  let arrowLeft = false;
+  let arrowRight = false;
+
+  if (tipo === "abierto") {
+    circleLeft = "open"; circleRight = "open";
+  } else if (tipo === "cerrado") {
+    circleLeft = "closed"; circleRight = "closed";
+  } else if (tipo === "cerrado_abierto") {
+    circleLeft = "closed"; circleRight = "open";
+  } else if (tipo === "derecha_abierta") {
+    circleLeft = "open"; shadeStart = x1; shadeEnd = 150; arrowRight = true;
+  } else if (tipo === "izquierda_cerrada") {
+    circleRight = "closed"; shadeStart = 10; shadeEnd = x2; arrowLeft = true;
+  }
+
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <svg viewBox={`0 0 ${width} ${height}`} width="140px" height="28px" style={{ display: "block" }}>
+        <defs>
+          <pattern id={`hatch-${tipo}`} width="4" height="4" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="0" x2="0" y2="4" stroke={C.orange} strokeWidth="1.5" />
+          </pattern>
+        </defs>
+        <line x1="8" y1={y} x2="152" y2={y} stroke={C.muted} strokeWidth="1.2" />
+        <rect x={shadeStart} y={y - 5} width={shadeEnd - shadeStart} height={10} fill={`url(#hatch-${tipo})`} opacity="0.85" />
+        <line x1={shadeStart} y1={y} x2={shadeEnd} y2={y} stroke={C.orange} strokeWidth="2.5" />
+
+        {circleLeft === "open" && <circle cx={x1} cy={y} r="4" fill={C.bg} stroke={C.orange} strokeWidth="2" />}
+        {circleLeft === "closed" && <circle cx={x1} cy={y} r="4" fill={C.orange} stroke={C.orange} strokeWidth="2" />}
+
+        {circleRight === "open" && <circle cx={x2} cy={y} r="4" fill={C.bg} stroke={C.orange} strokeWidth="2" />}
+        {circleRight === "closed" && <circle cx={x2} cy={y} r="4" fill={C.orange} stroke={C.orange} strokeWidth="2" />}
+
+        {arrowRight && <polygon points="148,12 156,16 148,20" fill={C.orange} />}
+        {arrowLeft && <polygon points="12,12 4,16 12,20" fill={C.orange} />}
+
+        {circleLeft && <text x={x1} y={y + 13} fill={C.text} fontSize="9" fontWeight="bold" textAnchor="middle">{aVal}</text>}
+        {circleRight && <text x={x2} y={y + 13} fill={C.text} fontSize="9" fontWeight="bold" textAnchor="middle">{bVal}</text>}
+      </svg>
+    </div>
+  );
+}
+
 // ── COMPONENTE: TABLA ─────────────────────────────────────────────────────────
 function TablaBasica({ tabla, color }) {
   const { C } = useTheme();
@@ -111,7 +174,11 @@ function TablaBasica({ tabla, color }) {
                     color: esResaltada && j === 0 ? color : C.text,
                     fontWeight: esResaltada && j === 0 ? 600 : "normal",
                   }}>
-                    {renderTextWithMath(celda)}
+                    {typeof celda === "string" && celda.startsWith("[enmallado:") ? (
+                      <GraficoEnmallado celda={celda} />
+                    ) : (
+                      renderTextWithMath(celda)
+                    )}
                   </td>
                 ))}
               </tr>
@@ -223,6 +290,8 @@ function VistaTema({ tema }) {
         {tema.graficoId === "sistemas_inecuaciones" && <GraficoSistemasInecuaciones />}
         {tema.graficoId === "representacion_funciones" && <GraficoRepresentaciones />}
         {tema.graficoId === "clasificacion_funciones" && <GraficoClasificacion />}
+        {tema.graficoId === "actividad_regleta" && <ActividadRegleta />}
+        {tema.graficoId === "logaritmos_interactivo" && <GraficoLogaritmos />}
         {tema.graficoId === "logaritmos_plotter" && <GraficoClasificacion onlyExpLog={true} />}
         {tema.graficoId === "trigonometricas_plotter" && <GraficoClasificacion onlyTrig={true} />}
         {tema.graficoId === "hiperbolicas_plotter" && <GraficoClasificacion onlyHyperbolic={true} />}

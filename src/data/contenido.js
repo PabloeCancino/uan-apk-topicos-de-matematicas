@@ -4,7 +4,7 @@
 export const META = {
   materia: "topicos_matematicas",
   nombreCompleto: "Tópicos de Matemáticas UAN",
-  version: "1.0.0",
+  version: "1.1.0",
   autor: "Dr. Pablo Eduardo Cancino Marentes",
   anio: "2026",
   descripcion: "Aplicación educativa de Tópicos de Matemáticas — Universidad Autónoma de Nayarit",
@@ -113,11 +113,24 @@ export const CATEGORIAS = [
       {
         id: "radicales",
         titulo: "Radicales y Racionalización",
-        definicion: "La raíz \\(n\\)-ésima de \\(a\\) se denota como \\(\\sqrt[n]{a} = a^{1/n}\\) y equivale al número \\(b \\geq 0\\) tal que \\(b^n = a\\). Un radical está simplificado si el radicando no tiene factores con potencias de orden mayor o igual a \\(n\\). La racionalización elimina radicales del denominador multiplicando por una expresión adecuada (como el conjugado binomial).",
-        formula: "\\sqrt[n]{a} \\cdot \\sqrt[n]{b} = \\sqrt[n]{a \\cdot b}",
+        definicion: "La raíz \\(n\\)-ésima de \\(a\\) se denota como \\(\\sqrt[n]{a} = a^{1/n}\\) y equivale al número \\(b \\geq 0\\) tal que \\(b^n = a\\).\n\n• Factorización del radicando: Para simplificar un radical, se descompone el radicando en sus factores primos y se extraen aquellos exponentes múltiplos del índice del radical: \\(\\sqrt[n]{a^k b} = a \\sqrt[n]{b}\\).\n• Operaciones con radicales (Valores numéricos puros): Dos o más radicales solo pueden sumarse o restarse si son semejantes (mismo índice y mismo radicando). En la multiplicación y división, se combinan radicandos con el mismo índice.",
+        formula: "\\sqrt[n]{a^k \\cdot b} = a^{\\frac{k}{n}} \\sqrt[n]{b} \\quad \\text{y} \\quad \\sqrt[n]{a} \\cdot \\sqrt[n]{b} = \\sqrt[n]{a \\cdot b}",
+        tabla: {
+          titulo: "Ejemplos de Operaciones con Radicales Numéricos",
+          encabezados: ["Operación", "Procedimiento de Factorización", "Resultado Simplificado"],
+          filas: [
+            ["Factorización de radicando", "\\(\\sqrt{180} = \\sqrt{2^2 \\cdot 3^2 \\cdot 5} = 2 \\cdot 3 \\sqrt{5}\\)", "\\(6\\sqrt{5}\\)"],
+            ["Suma y resta numérica", "\\(3\\sqrt{12} + 5\\sqrt{27} - 2\\sqrt{48} = 6\\sqrt{3} + 15\\sqrt{3} - 8\\sqrt{3}\\)", "\\(13\\sqrt{3}\\)"],
+            ["Multiplicación numérica", "\\(\\sqrt{6} \\cdot \\sqrt{10} = \\sqrt{60} = \\sqrt{2^2 \\cdot 15}\\)", "\\(2\\sqrt{15}\\)"],
+            ["División numérica", "\\(\\frac{\\sqrt{75}}{\\sqrt{3}} = \\sqrt{\\frac{75}{3}} = \\sqrt{25}\\)", "\\(5\\)"],
+            ["Racionalización simple", "\\(\\frac{6}{\\sqrt{3}} = \\frac{6\\sqrt{3}}{3}\\)", "\\(2\\sqrt{3}\\)"],
+          ],
+          resaltadas: [0, 1],
+          colorAuto: false
+        },
         notas: [
           "Propiedades de radicales: \\(\\frac{\\sqrt[n]{a}}{\\sqrt[n]{b}} = \\sqrt[n]{\\frac{a}{b}}\\) y \\(\\sqrt[m]{\\sqrt[n]{a}} = \\sqrt[m \\cdot n]{a}\\).",
-          "Simplificación: \\(\\sqrt{48} = \\sqrt{16 \\cdot 3} = 4\\sqrt{3}\\).",
+          "Simplificación de radicando: \\(\\sqrt{48} = \\sqrt{16 \\cdot 3} = 4\\sqrt{3}\\).",
           "Conjugado binomial: multiplicando un binomio por su conjugado se obtiene una diferencia de cuadrados: \\((\\sqrt{a}+\\sqrt{b})(\\sqrt{a}-\\sqrt{b}) = a - b\\)."
         ]
       },
@@ -125,7 +138,7 @@ export const CATEGORIAS = [
         id: "razones_proporciones",
         titulo: "Razones y proporciones",
         graficoId: "razones_proporciones",
-        definicion: "La razón de \\(a\\) a \\(b\\) (\\(b \\neq 0\\)) es \\(a/b\\). Cuatro números forman una proporción si la primera razón es igual a la segunda. En proporción directa, \\(y=kx\\) (con \\(k>0\\)). En proporción inversa, \\(y=k/x\\) (con \\(k>0\\)).",
+        definicion: "La razón de \\(a\\) a \\(b\\) (\\(b \\neq 0\\)) es \\(a/b\\). Cuatro números forman una proporción si la primera razón es igual a la segunda. En proporción directa, \\(y=kx\\) (con \\(k>0\\)). En proporción inversa, \\(y=k/x\\) (con \\(k>0\\)).\n\nRelación Datos del Problema vs. Puntos Cartesianos:\nCada dato práctico de un problema de proporciones (ej. litros de combustible vs costo, o número de obreros vs días de trabajo) se traduce directamente a un par ordenado \\((x, y)\\) en la gráfica cartesiana.",
         formula: "\\frac{a}{b} = \\frac{c}{d} \\iff a \\cdot d = b \\cdot c",
         tabla: {
           titulo: "Propiedades de las Proporciones",
@@ -140,11 +153,10 @@ export const CATEGORIAS = [
           colorAuto: false
         },
         notas: [
-          "Proporción directa: El costo de gasolina es directamente proporcional a los litros comprados. Si 10 L cuestan \\(\\$230\\), entonces \\(k=23\\) y 35 L cuestan \\(C = 23 \\cdot 35 = \\$805\\).",
-          "Proporción inversa: Un automóvil tarda 3 h a 80 km/h (constante de distancia \\(k=240\\)); si aumenta su velocidad a 120 km/h, tardará \\(240/120 = 2\\) h.",
+          "Proporción directa (Datos vs Puntos): Si 1 L de gasolina cuesta \\(\\$2\\), 2 L cuestan \\(\\$4\\) y 4 L cuestan \\(\\$8\\). Los datos se representan como los puntos \\((1,2)\\), \\((2,4)\\) y \\((4,8)\\) alineados en una recta que pasa por el origen.",
+          "Proporción inversa (Datos vs Puntos): Si 1 obrero tarda 6 días, 2 obreros tardan 3 días y 3 obreros tardan 2 días. Los puntos \\((1,6)\\), \\((2,3)\\) y \\((3,2)\\) yacen sobre una curva de hipérbola \\(y = 6/x\\).",
           "Regla de tres compuesta: 6 obreros pintan un muro en 4 días trabajando 8 h/día. Si se tienen 4 obreros trabajando 6 h/día, tardarán \\(d = \\frac{6 \\cdot 4 \\cdot 8}{4 \\cdot 6} = 8\\) días.",
-          "Problema de mezcla de ácidos: mezclar una solución al 30% con otra al 60% para obtener 10 L al 45% requiere plantear \\(0.30x + 0.60(10-x) = 0.45(10)\\), de donde resulta \\(x = 5\\) L de cada una.",
-          "Problema de escalas en planos: con una escala de \\(1:150\\), si una habitación mide 3.2 cm en el plano, su longitud real es \\(3.2 \\times 150 = 480\\) cm (4.8 m)."
+          "Problema de mezcla de ácidos: mezclar una solución al 30% con otra al 60% para obtener 10 L al 45% requiere plantear \\(0.30x + 0.60(10-x) = 0.45(10)\\), de donde resulta \\(x = 5\\) L de cada una."
         ]
       },
       {
@@ -158,18 +170,13 @@ export const CATEGORIAS = [
           "3. Calcula: \\(\\frac{4^2-2\\times3}{(3+1)^2-5} = \\frac{10}{11}\\).",
           "4. Evalúa: \\(|-9|-|4-7|+|0| = 6\\).",
           "5. Resuelve: \\(|3x+1|=10 \\implies 3x+1=10 \\lor 3x+1=-10 \\implies x=3 \\lor x=-11/3\\).",
-          "6. Simplifica: \\(x^5\\cdot x^{-3}\\cdot x^0 = x^2\\).",
-          "7. Calcula: \\(\\left(\\frac{2^3\\cdot2^{-1}}{2^4}\\right)^2 = \\frac{1}{16}\\).",
+          "6. Factorización de radicando: \\(\\sqrt{180} = \\sqrt{36 \\times 5} = 6\\sqrt{5}\\).",
+          "7. Operación numérica con radicales: \\(3\\sqrt{12} + 5\\sqrt{27} - 2\\sqrt{48} = 6\\sqrt{3} + 15\\sqrt{3} - 8\\sqrt{3} = 13\\sqrt{3}\\).",
           "8. Radical simple: \\(a^{3/4} = \\sqrt[4]{a^3}\\).",
           "9. Simplifica radicales: \\(\\frac{a^{2/3}\\cdot a^{1/2}}{a^{1/6}} = a^{2/3 + 1/2 - 1/6} = a^1 = a\\).",
           "10. Simplifica radical numérico: \\(\\sqrt{200} = 10\\sqrt{2}\\).",
-          "11. Opera radicales: \\(2\\sqrt8+3\\sqrt{18}-\\sqrt{50} = 4\\sqrt{2}+9\\sqrt{2}-5\\sqrt{2} = 8\\sqrt{2}\\).",
-          "12. Racionaliza: \\(\\frac{6}{\\sqrt7-1} = \\sqrt{7}+1\\).",
-          "13. Racionaliza índice 3: \\(\\frac{3}{\\sqrt[3]9} = \\sqrt[3]{3}\\).",
-          "14. Resuelve proporción: \\(\\frac{x+1}{5}=\\frac{x-2}{3} \\implies 3x+3=5x-10 \\implies x=6.5\\).",
-          "15. Triángulo en razón 3:4:5 y perímetro 72 cm: Los lados miden 18 cm, 24 cm y 30 cm.",
-          "16. Regla de tres inversa: Si 4 obreros tardan 15 días, 6 obreros tardarán \\(4 \\cdot 15 / 6 = 10\\) días.",
-          "17. Proporción directa: Si 3 kg cuestan \\(\\$120\\), entonces 7.5 kg cuestan \\(\\frac{120 \\cdot 7.5}{3} = \\$300\\)."
+          "11. Racionaliza: \\(\\frac{6}{\\sqrt7-1} = \\sqrt{7}+1\\).",
+          "12. Resuelve proporción: \\(\\frac{x+1}{5}=\\frac{x-2}{3} \\implies 3x+3=5x-10 \\implies x=6.5\\)."
         ]
       }
     ]
@@ -195,8 +202,8 @@ export const CATEGORIAS = [
         id: "productos_notables",
         titulo: "Productos Notables",
         graficoId: "productos_notables",
-        definicion: "Son multiplicaciones algebraicas de polinomios cuyo resultado se puede escribir por simple inspección, sin necesidad de efectuar la multiplicación distributiva término por término. Tienen demostraciones geométricas basadas en la subdivisión de áreas.",
-        formula: "(a \\pm b)^2 = a^2 \\pm 2ab + b^2",
+        definicion: "Son multiplicaciones algebraicas de polinomios cuyo resultado se puede escribir por simple inspección, sin necesidad de efectuar la multiplicación distributiva término por término. Tienen demostraciones geométricas basadas en la subdivisión de áreas en 2D (binomio al cuadrado) y volúmenes en 3D (binomio al cubo).",
+        formula: "(a \\pm b)^3 = a^3 \\pm 3a^2b + 3ab^2 \\pm b^3",
         tabla: {
           titulo: "Productos notables fundamentales",
           encabezados: ["Nombre", "Fórmula de desarrollo"],
@@ -207,18 +214,14 @@ export const CATEGORIAS = [
             ["Binomio al cubo (suma)", "\\((a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\\)"],
             ["Binomio al cubo (resta)", "\\((a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3\\)"],
           ],
-          resaltadas: [],
+          resaltadas: [3, 4],
           colorAuto: false
         },
         notas: [
+          "Demostración geométrica del Binomio al Cubo: Un cubo de arista \\((a+b)\\) posee un volumen \\((a+b)^3\\). Al subdividirlo se obtienen 8 cuerpos geométricos: 1 cubo de \\(a^3\\), 3 prismas de \\(a^2b\\), 3 prismas de \\(ab^2\\) y 1 cubo de \\(b^3\\).",
           "Ejemplo de Cuadrado de binomio: \\((3x - 2)^2 = 9x^2 - 12x + 4\\).",
-          "Ejemplo de Diferencia de cuadrados: \\((5x + 3)(5x - 3) = 25x^2 - 9\\).",
           "Ejemplo de Cubo de binomio: \\((x + 2)^3 = x^3 + 6x^2 + 12x + 8\\).",
-          "Problema mental: Calcular \\(98^2 = (100 - 2)^2 = 10000 - 400 + 4 = 9604\\).",
-          "Problema mental: Calcular \\(61 \\times 59 = (60 + 1)(60 - 1) = 3600 - 1 = 3599\\).",
-          "Problema de terreno cuadrado: El área de un terreno de lado \\(x+5\\) es \\((x+5)^2 = x^2 + 10x + 25\\) m\\(^2\\); si \\(x=12\\) m, el área es \\(144 + 120 + 25 = 289\\) m\\(^2\\).",
-          "Problema de tallado de cubo: El volumen restante de un cubo de arista \\(a-3\\) cm es \\((a-3)^3 = a^3 - 9a^2 + 27a - 27\\) cm\\(^3\\); si \\(a=10\\), el volumen es \\(1000 - 900 + 270 - 27 = 343\\) cm\\(^3\\).",
-          "Problema de simplificación algebraica: \\(\\frac{(x+3)^2 - (x-3)^2}{4x} = \\frac{[(x+3)+(x-3)][(x+3)-(x-3)]}{4x} = \\frac{2x \\cdot 6}{4x} = \\frac{12x}{4x} = 3\\)."
+          "Problema mental: Calcular \\(98^2 = (100 - 2)^2 = 10000 - 400 + 4 = 9604\\)."
         ]
       },
       {
@@ -230,36 +233,29 @@ export const CATEGORIAS = [
         notas: [
           "Ejemplo (Desarrollo del Binomio): \\((a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4\\).",
           "Ejemplo (Término general): Para encontrar el 4.° término de \\((2x-3)^6\\), tomamos \\(k=3\\): \\(\\binom{6}{3}(2x)^3(-3)^3 = 20 \\cdot 8x^3 \\cdot (-27) = -4320x^3\\).",
-          "Ejemplo (Expansión con el Triángulo de Pascal): Expandir \\((x+2)^5\\) usando el Triángulo de Pascal (coeficientes \\(1,5,10,10,5,1\\)) da: \\(x^5 + 10x^4 + 40x^3 + 80x^2 + 80x + 32\\).",
-          "Nota de Serie Binomial: Para exponente negativo o no entero \\(r \\in \\R\\), Newton generalizó la fórmula como una serie infinita: \\((1+x)^r = \\sum_{k=0}^{\\infty} \\binom{r}{k} x^k\\) con \\(\\binom{r}{k} = \\frac{r(r-1)\\dots(r-k+1)}{k!}\\), convergente si \\(|x| < 1\\).",
-          "Ejemplo (Serie binomial para exponente negativo): \\((1+x)^{-1} = 1 - x + x^2 - x^3 + \\dots\\) para \\(|x| < 1\\) (coincide con la serie geométrica).",
-          "Ejemplo (Serie binomial con exponente -2): \\((1-x)^{-2} = 1 + 2x + 3x^2 + 4x^3 + \\dots\\)."
+          "Ejemplo (Expansión con el Triángulo de Pascal): Expandir \\((x+2)^5\\) usando el Triángulo de Pascal (coeficientes \\(1,5,10,10,5,1\\)) da: \\(x^5 + 10x^4 + 40x^3 + 80x^2 + 80x + 32\\)."
         ]
       },
       {
         id: "factorizacion",
-        titulo: "Factorización",
-        definicion: "La factorización es el proceso inverso al desarrollo de productos notables; consiste en reescribir un polinomio como el producto de polinomios más simples (factores) de menor grado.",
-        formula: "a^2 - b^2 = (a + b)(a - b)",
+        titulo: "Factorización y División Sintética",
+        definicion: "La factorización reescribe un polinomio como el producto de factores de menor grado.\n\nDivisión Sintética (Regla de Ruffini):\nEs un método abreviado para dividir un polinomio \\(P(x)\\) entre un divisor lineal de la forma \\((x - c)\\). Permite hallar el cociente, el residuo y, mediante el Teorema del Factor (\\(P(c) = 0\\)), encontrar las raíces racionales para factorizar polinomios de grado 3 o superior.",
+        formula: "P(x) = (x - c) Q(x) + R \\quad \\text{si } R = 0 \\implies P(x) = (x - c) Q(x)",
         tabla: {
-          titulo: "Casos de Factorización Comunes",
-          encabezados: ["Caso", "Expresión desarrollada", "Factorización"],
+          titulo: "Cuadrícula de División Sintética (Ejemplo: x³ - 6x² + 11x - 6 entre x - 1)",
+          encabezados: ["Paso / Coeficientes", "x³", "x²", "x¹", "Término Indep."],
           filas: [
-            ["Factor común", "\\(ab + ac\\)", "\\(a(b + c)\\)"],
-            ["Diferencia de cuadrados", "\\(a^2 - b^2\\)", "\\((a + b)(a - b)\\)"],
-            ["Trinomio cuadrado perfecto", "\\(a^2 \\pm 2ab + b^2\\)", "\\((a \\pm b)^2\\)"],
-            ["Trinomio de la forma \\(x^2+bx+c\\)", "\\(x^2 + (p+q)x + pq\\)", "\\((x + p)(x + q)\\)"],
-            ["Suma y diferencia de cubos", "\\(a^3 \\pm b^3\\)", "\\((a \\pm b)(a^2 \\mp ab + b^2)\\)"],
-            ["Agrupación de términos", "\\(ac + ad + bc + bd\\)", "\\((a + b)(c + d)\\)"],
+            ["Coeficientes de P(x)", "1", "-6", "11", "-6"],
+            ["Multiplicar por c = 1", "—", "1", "-5", "6"],
+            ["Resultado (Q(x) y Residuo R)", "1", "-5", "6", "0 (¡Raíz x = 1!)"],
           ],
-          resaltadas: [],
+          resaltadas: [2],
           colorAuto: false
         },
         notas: [
-          "Ejemplo (Factor común): \\(6x^3 - 9x^2 + 3x = 3x(2x^2 - 3x + 1) = 3x(2x - 1)(x - 1)\\).",
-          "Ejemplo (Diferencia de cuadrados): \\(16x^2 - 25 = (4x + 5)(4x - 5)\\).",
-          "Ejemplo (Trinomio general): \\(x^2 - 7x + 12 = (x - 3)(x - 4)\\).",
-          "Ejemplo (Diferencia de cubos): \\(8x^3 - 27 = (2x - 3)(4x^2 + 6x + 9)\\)."
+          "Procedimiento de División Sintética: 1) Escribir los coeficientes ordenados de \\(P(x)\\). 2) Probar candidatos a raíces \\(c\\) (divisores del término independiente). 3) Bajar el primer coeficiente, multiplicar por \\(c\\) y sumar. 4) Si el residuo final es \\(0\\), entonces \\(x = c\\) es raíz y \\((x-c)\\) es factor.",
+          "Ejemplo completo de División Sintética: Para factorizar \\(P(x) = x^3 - 6x^2 + 11x - 6\\), probamos \\(c = 1\\). La división sintética da cociente \\(Q(x) = x^2 - 5x + 6\\) y residuo \\(R = 0\\). Al factorizar la cuadrática resultante \\(x^2 - 5x + 6 = (x-2)(x-3)\\), la factorización completa es \\((x-1)(x-2)(x-3)\\).",
+          "Casos de Factorización Comunes: Factor común, diferencia de cuadrados \\(a^2-b^2=(a+b)(a-b)\\), trinomio cuadrado perfecto \\((a \\pm b)^2\\), y trinomio de la forma \\(x^2+bx+c = (x+p)(x+q)\\)."
         ]
       },
       {
@@ -281,8 +277,7 @@ export const CATEGORIAS = [
         notas: [
           "Discriminante (\\(\\Delta\\)): determina el tipo de soluciones. Si \\(\\Delta > 0\\): dos raíces reales distintas; si \\(\\Delta = 0\\): una raíz real doble; si \\(\\Delta < 0\\): sin raíces reales (soluciones complejas).",
           "Ejemplo (Ecuación lineal): Para resolver \\(3(x-2)+5 = 2x-1\\), expandimos y agrupamos: \\(3x-6+5 = 2x-1 \\implies 3x-1 = 2x-1 \\implies x=0\\).",
-          "Ejemplo (Cuadrática por factorización): Para \\(x^2 - 5x + 6 = 0\\), factorizamos como \\((x-2)(x-3)=0\\), obteniendo las raíces \\(x=2\\) y \\(x=3\\) (donde la parábola interseca al eje X).",
-          "Ejemplo (Cuadrática por fórmula general): Para \\(2x^2 - 3x - 2 = 0\\), con \\(\\Delta = (-3)^2 - 4(2)(-2) = 25\\), obtenemos las soluciones \\(x = \\frac{3 \\pm \\sqrt{25}}{4}\\), resultando \\(x_1 = 2\\) y \\(x_2 = -1/2\\)."
+          "Ejemplo (Cuadrática por factorización): Para \\(x^2 - 5x + 6 = 0\\), factorizamos como \\((x-2)(x-3)=0\\), obteniendo las raíces \\(x=2\\) y \\(x=3\\)."
         ]
       },
       {
@@ -291,8 +286,7 @@ export const CATEGORIAS = [
         definicion: "La racionalización algebraica consiste en transformar una expresión con raíces en su denominador en otra equivalente que carezca de ellas. En expresiones complejas (como límites algebraicos), esto permite simplificar factores que provocan indeterminaciones de la forma \\(0/0\\), multiplicando el numerador y denominador por el conjugado binomial.",
         formula: "\\frac{x-4}{\\sqrt{x}-2} = \\sqrt{x}+2 \\quad \\text{si } x \\neq 4",
         notas: [
-          "Conjugado binomial: consiste en cambiar el signo del segundo término. El producto de dos binomios conjugados da una diferencia de cuadrados: \\((\\sqrt{a}-\\sqrt{b})(\\sqrt{a}+\\sqrt{b}) = a-b\\).",
-          "Ejemplo (Simplificación con radical): Para simplificar \\(\\frac{x-4}{\\sqrt{x}-2}\\), multiplicamos numerador y denominador por la unidad (construida a partir del conjugado del denominador entre si mismo)     \\(\\sqrt{x}+2\\): \\(\\frac{(x-4)(\\sqrt{x}+2)}{(\\sqrt{x}-2)(\\sqrt{x}+2)} = \\frac{(x-4)(\\sqrt{x}+2)}{x-4} = \\sqrt{x}+2\\) (para \\(x \\neq 4\\))."
+          "Conjugado binomial: consiste en cambiar el signo del segundo término. El producto de dos binomios conjugados da una diferencia de cuadrados: \\((\\sqrt{a}-\\sqrt{b})(\\sqrt{a}+\\sqrt{b}) = a-b\\)."
         ]
       },
       {
@@ -302,21 +296,11 @@ export const CATEGORIAS = [
         formula: "\\text{Elementos de Álgebra}",
         notas: [
           "1. Suma polinomios: \\((4x^2-3x+2)+(-2x^2+x-5) = 2x^2-2x-3\\).",
-          "2. Expande: \\((3x-2)(2x^2-x+1) = 6x^3-7x^2+5x-2\\).",
-          "3. Aplica binomio al cuadrado: \\((4x-3y)^2 = 16x^2-24xy+9y^2\\).",
+          "2. Expande binomio al cubo: \\((x+2)^3 = x^3+6x^2+12x+8\\).",
+          "3. División sintética: Factoriza \\(x^3-6x^2+11x-6 = (x-1)(x-2)(x-3)\\).",
           "4. Factoriza: \\(12x^3-18x^2+6x = 6x(2x-1)(x-1)\\).",
-          "5. Factoriza: \\(x^2+2x-15 = (x+5)(x-3)\\).",
-          "6. Factoriza cubos: \\(27x^3+8 = (3x+2)(9x^2-6x+4)\\).",
-          "7. Simplifica fracción: \\(\\frac{x^2-1}{x^2+x} = \\frac{(x-1)(x+1)}{x(x+1)} = \\frac{x-1}{x}\\).",
-          "8. Suma fracciones: \\(\\frac{3}{x-2}+\\frac{1}{x+3} = \\frac{4x+7}{(x-2)(x+3)}\\).",
-          "9. Resuelve lineal: \\(5(x-1)-3(2x+1)=0 \\implies 5x-5-6x-3=0 \\implies x=-8\\).",
-          "10. Resuelve cuadrática: \\(3x^2-5x-2=0 \\implies (3x+1)(x-2)=0 \\implies x=2 \\lor x=-1/3\\).",
-          "11. Pascal: \\((a+b)^5 = a^5+5a^4b+10a^3b^2+10a^2b^3+5ab^4+b^5\\).",
-          "12. Término independiente: de \\((x+1/x)^6\\) es \\(\\binom{6}{3} = 20\\).",
-          "13. Factoriza completamente: \\(x^4-16 = (x^2+4)(x+2)(x-2)\\).",
-          "14. Resuelve racional: \\(\\frac{2}{x-1}=\\frac{3}{x+2} \\implies 2x+4=3x-3 \\implies x=7\\).",
-          "15. Factoriza por agrupación: \\(x^3+2x^2-9x-18 = (x+2)(x^2-9) = (x+2)(x+3)(x-3)\\).",
-          "16. Aplicación jardín rectangular: Área \\(x^2+7x+12 = (x+3)(x+4)\\). Dimensiones posibles: \\(x+3\\) m de ancho por \\(x+4\\) m de largo."
+          "5. Factoriza cubos: \\(27x^3+8 = (3x+2)(9x^2-6x+4)\\).",
+          "6. Resuelve cuadrática: \\(3x^2-5x-2=0 \\implies (3x+1)(x-2)=0 \\implies x=2 \\lor x=-1/3\\)."
         ]
       }
     ]
@@ -329,25 +313,25 @@ export const CATEGORIAS = [
     temas: [
       {
         id: "orden_intervalos",
-        titulo: "Orden e Intervalos",
-        definicion: "Los números reales están ordenados geométricamente en la recta real. Una desigualdad describe una relación de orden (\\(>\\), \\(<\\), \\(\\geq\\), \\(\\leq\\)) entre dos expresiones. Sus soluciones se expresan en notación de intervalos.",
+        titulo: "Orden e Intervalos (Enmallado Gráfico)",
+        definicion: "Los números reales están ordenados geométricamente en la recta real. Una desigualdad describe una relación de orden (\\(>\\), \\(<\\), \\(\\geq\\), \\(\\leq\\)) entre dos expresiones. Sus soluciones se expresan en notación de intervalos y se representan gráficamente sobre la recta real mediante un patrón de sombreado (enmallado) con extremos cerrados (puntos sólidos \\(\\bullet\\)) o abiertos (círculos vacíos \\(\\circ\\)).",
         formula: "a < x < b \\iff x \\in (a, b)",
         tabla: {
-          titulo: "Notación de Intervalos",
-          encabezados: ["Notación", "Inecuación correspondiente", "Tipo de intervalo"],
+          titulo: "Notación de Intervalos y Representación Gráfica (Enmallado)",
+          encabezados: ["Notación", "Inecuación correspondiente", "Tipo de intervalo", "Representación Gráfica (Enmallado)"],
           filas: [
-            ["\\((a,b)\\)", "\\(a < x < b\\)", "Intervalo abierto"],
-            ["\\([a,b]\\)", "\\(a \\leq x \\leq b\\)", "Intervalo cerrado"],
-            ["\\([a,b)\\)", "\\(a \\leq x < b\\)", "Intervalo semiabierto"],
-            ["\\((a,\\infty)\\)", "\\(x > a\\)", "Semirrecta abierta"],
-            ["\\((-\\infty,b]\\)", "\\(x \\leq b\\)", "Semirrecta cerrada"],
+            ["\\((a,b)\\)", "\\(a < x < b\\)", "Intervalo abierto", "[enmallado:abierto:a:b]"],
+            ["\\([a,b]\\)", "\\(a \\leq x \\leq b\\)", "Intervalo cerrado", "[enmallado:cerrado:a:b]"],
+            ["\\([a,b)\\)", "\\(a \\leq x < b\\)", "Intervalo semiabierto", "[enmallado:cerrado_abierto:a:b]"],
+            ["\\((a,\\infty)\\)", "\\(x > a\\)", "Semirrecta abierta", "[enmallado:derecha_abierta:a]"],
+            ["\\((-\\infty,b]\\)", "\\(x \\leq b\\)", "Semirrecta cerrada", "[enmallado:izquierda_cerrada:b]"],
           ],
           resaltadas: [],
           colorAuto: false
         },
         notas: [
+          "Representación Gráfica (Enmallado): Un corchete \\([\\) o \\(]\\) equivale a un círculo relleno (\\(\\bullet\\)) indicando que el extremo pertenece al conjunto. Un paréntesis \\((\\) o \\()\\) equivale a un círculo sin rellenar (\\(\\circ\\)) indicando exclusión.",
           "Propiedades de la desigualdad (Multiplicación por constante): Si \\(a < b\\) y \\(c > 0\\), entonces \\(ac < bc\\). Si \\(c < 0\\), entonces \\(ac > bc\\) (se invierte la dirección de la desigualdad).",
-          "Propiedad de adición: Si \\(a < b\\), entonces \\(a + c < b + c\\) para cualquier número real \\(c\\).",
           "Propiedad transitiva: Si \\(a < b\\) y \\(b < c\\), entonces \\(a < c\\)."
         ]
       },
@@ -369,8 +353,7 @@ export const CATEGORIAS = [
         formula: "ax^2 + bx + c \\leq 0",
         notas: [
           "Ejemplo: \\(x^2 - 5x + 6 < 0 \\implies (x-2)(x-3) < 0\\). Solución: intervalo abierto \\((2, 3)\\).",
-          "Ejemplo: \\(x^2 - 2x - 3 \\geq 0 \\implies (x-3)(x+1) \\geq 0\\). Solución: \\((-\\infty, -1] \\cup [3, +\\infty)\\).",
-          "Si el trinomio no posee raíces reales (\\(\\Delta < 0\\)), conserva su signo en toda la recta (ej. \\(x^2 + 2x + 5 > 0\\) tiene solución \\(\\R\\))."
+          "Ejemplo: \\(x^2 - 2x - 3 \\geq 0 \\implies (x-3)(x+1) \\geq 0\\). Solución: \\((-\\infty, -1] \\cup [3, +\\infty)\\)."
         ]
       },
       {
@@ -379,9 +362,8 @@ export const CATEGORIAS = [
         definicion: "Las desigualdades que contienen valor absoluto se resuelven interpretando la distancia al origen o entre puntos de la recta numérica, lo cual da origen a intervalos de intersección ('y') o de unión ('o').",
         formula: "|x| < a \\iff -a < x < a \\quad \\text{y} \\quad |x| > a \\iff x < -a \\text{ ó } x > a",
         notas: [
-          "Ejemplo (Tipo |A| < k): \\(|2x - 1| < 5 \\implies -5 < 2x - 1 < 5 \\implies -4 < 2x < 6 \\implies -2 < x < 3\\). Solución: \\((-2, 3)\\).",
-          "Ejemplo (Tipo |A| > k): \\(|x + 3| > 2 \\implies x + 3 < -2 \\lor x + 3 > 2 \\implies x < -5 \\lor x > -1\\). Solución: \\((-\\infty, -5) \\cup (-1, +\\infty)\\).",
-          "Ejemplo (Compuesta: 1 ≤ |3x - 6| ≤ 9): Equivale a resolver las dos inecuaciones \\(1 \\leq |3x - 6|\\) y \\(|3x - 6| \\leq 9\\) a la vez, obteniendo como solución la unión de intervalos: \\([-1, 5/3] \\cup [7/3, 5]\\)."
+          "Ejemplo (Tipo |A| < k): \\(|2x - 1| < 5 \\implies -5 < 2x - 1 < 5 \\implies -2 < x < 3\\). Solución: \\((-2, 3)\\).",
+          "Ejemplo (Tipo |A| > k): \\(|x + 3| > 2 \\implies x + 3 < -2 \\lor x + 3 > 2 \\implies x < -5 \\lor x > -1\\). Solución: \\((-\\infty, -5) \\cup (-1, +\\infty)\\)."
         ]
       },
       {
@@ -391,10 +373,7 @@ export const CATEGORIAS = [
         definicion: "Un sistema de inecuaciones está compuesto por dos o más desigualdades simultáneas.\n\n• En una variable: la solución es la intersección de los intervalos de cada inecuación.\n• En dos variables (lineal): cada inecuación define un semiplano. La intersección de estos semiplanos determina una región del plano cartesiano llamada región factible o polígono de solución.",
         formula: "\\begin{cases} a_1 x + b_1 y \\leq c_1 \\\\ a_2 x + b_2 y \\leq c_2 \\end{cases}",
         notas: [
-          "Región factible o Polígono de solución: Corresponde al conjunto de puntos \\((x,y)\\) que satisfacen simultáneamente todas las restricciones. Si la región está acotada en todas direcciones, forma un polígono geométrico cerrado.",
-          "Ejemplo (Una variable): Resolver el sistema \\(x + 1 > 0\\) y \\(x - 4 \\leq 0\\) implica cruzar los intervalos \\((-1, +\\infty)\\) y \\((-\\infty, 4]\\), lo cual da la intersección \\(x \\in (-1, 4]\\) (es decir, \\(-1 < x \\leq 4\\)).",
-          "Ejemplo (Dos variables - Triángulo factible): El sistema \\(x \\geq 0\\), \\(y \\geq 0\\) y \\(x + y \\leq 4\\) delimita un triángulo en el primer cuadrante. Sus fronteras son los ejes cartesianos y la recta límite \\(x + y = 4\\), con vértices (puntos de intersección) en \\((0,0)\\), \\((4,0)\\) y \\((0,4)\\).",
-          "Optimización (Teorema de los Vértices): En programación lineal, el valor máximo o mínimo de una función objetivo lineal \\(z = ax + by\\) sobre una región factible siempre se localiza en uno de los vértices (esquinas) de la región. Evaluando la función objetivo \\(z = 3x + 2y\\) en los vértices del triángulo: \\(z(0,0) = 0\\), \\(z(0,4) = 8\\) y \\(z(4,0) = 12\\). Por lo tanto, la solución óptima máxima ocurre en el vértice \\((4,0)\\) con un valor de \\(z = 12\\)."
+          "Región factible o Polígono de solución: Corresponde al conjunto de puntos \\((x,y)\\) que satisfacen simultáneamente todas las restricciones. Si la región está acotada en todas direcciones, forma un polígono geométrico cerrado."
         ]
       },
       {
@@ -405,18 +384,7 @@ export const CATEGORIAS = [
         notas: [
           "1. Resuelve: \\(4x+3\\leq15 \\implies 4x \\leq 12 \\implies x \\leq 3 \\iff x \\in (-\\infty, 3]\\).",
           "2. Resuelve: \\(-3<2x-1<9 \\implies -2<2x<10 \\implies -1<x<5 \\iff x \\in (-1, 5)\\).",
-          "3. Resuelve: \\(\\frac{3x-1}{2}>\\frac{x+3}{4} \\implies 2(3x-1)>(x+3) \\implies 5x > 5 \\implies x > 1 \\iff x \\in (1, +\\infty)\\).",
-          "4. Resuelve: \\(|x-2|\\leq4 \\implies -4 \\leq x-2 \\leq 4 \\implies -2 \\leq x \\leq 6 \\iff x \\in [-2, 6]\\).",
-          "5. Resuelve: \\(|2x+3|>7 \\implies 2x+3<-7 \\lor 2x+3>7 \\implies x<-5 \\lor x>2 \\iff x \\in (-\\infty, -5) \\cup (2, +\\infty)\\).",
-          "6. Resuelve: \\(|x-1|\\leq0 \\implies x-1=0 \\implies x=1\\).",
-          "7. Resuelve: \\(x^2-x-12\\leq0 \\implies (x-4)(x+3)\\leq0 \\implies x \\in [-3, 4]\\).",
-          "8. Resuelve: \\(2x^2+x-1>0 \\implies (2x-1)(x+1)>0 \\implies x \\in (-\\infty, -1) \\cup (1/2, +\\infty)\\).",
-          "9. Resuelve: \\(x^2+6x+9\\geq0 \\implies (x+3)^2\\geq0 \\implies x \\in \\mathbb{R}\\).",
-          "10. Resuelve: \\(x^2+1<0 \\implies\\) sin solución real.",
-          "11. Resuelve racional: \\(\\frac{x-3}{x+2}\\geq0\\). Puntos críticos: \\(3\\) y \\(-2\\) (abierto). Solución: \\((-\\infty, -2) \\cup [3, +\\infty)\\).",
-          "12. Resuelve: \\(|5-2x|\\geq3 \\implies 5-2x \\leq -3 \\lor 5-2x \\geq 3 \\implies x \\geq 4 \\lor x \\leq 1 \\iff x \\in (-\\infty, 1] \\cup [4, +\\infty)\\).",
-          "13. Aplicación tolerancia: Diámetro dentro de 0.02 mm del nominal 15 mm: \\(|d-15| \\leq 0.02 \\implies d \\in [14.98, 15.02]\\) mm.",
-          "14. Aplicación proyectil: Altura \\(h(t)=-5t^2+20t > 15 \\implies t^2-4t+3 < 0 \\implies (t-1)(t-3)<0 \\implies 1 < t < 3\\) segundos."
+          "3. Resuelve: \\(|2x+3|>7 \\implies 2x+3<-7 \\lor 2x+3>7 \\implies x<-5 \\lor x>2 \\iff x \\in (-\\infty, -5) \\cup (2, +\\infty)\\)."
         ]
       }
     ]
@@ -429,16 +397,15 @@ export const CATEGORIAS = [
     temas: [
       {
         id: "concepto_funcion",
-        titulo: "Conceptos Generales",
-        definicion: "Definición: Una función \\(f\\) de un conjunto \\(A\\) a un conjunto \\(B\\) (\\(f: A \\to B\\)) es una regla que asigna a cada elemento \\(x \\in A\\) exactamente un elemento \\(f(x) \\in B\\). El conjunto \\(A\\) representa el dominio de la función (\\(A = \\text{Dom } f\\)) y el rango de la función (\\(\\text{Ran } f\\)) está dado por todos los valores de salida reales: \\(\\text{Ran } f = \\{f(x) : x \\in A\\}\\).",
+        titulo: "Conceptos Generales y Prueba de la Regleta",
+        graficoId: "actividad_regleta",
+        definicion: "Definición: Una función \\(f\\) de un conjunto \\(A\\) a un conjunto \\(B\\) (\\(f: A \\to B\\)) es una regla que asigna a cada elemento \\(x \\in A\\) exactamente un elemento \\(f(x) \\in B\\).\n\nPrueba de la Regleta (Recta Vertical):\nPara verificar geométricamente si una curva trazada en el plano representa una función, se desliza una regla vertical (regleta) a lo largo del eje X. Si la regleta interseca a la curva en exactamente **un punto** para cada valor de \\(x\\), entonces la curva **sí es una función**. Si la interseca en dos o más puntos simultáneos, **no es una función**.",
         formula: "f: A \\to B \\quad A = \\text{Dom } f \\quad \\text{Ran } f = \\{f(x) : x \\in A\\}",
         notas: [
+          "Prueba de la Regleta: Deslizar una recta vertical \\(x = x_0\\). Una circunferencia \\(x^2+y^2=9\\) falla la prueba porque la regleta la corta en 2 puntos. Una parábola \\(y=x^2-2\\) pasa la prueba porque siempre la corta en 1 solo punto.",
           "Dominio: conjunto \\(A\\) de todos los valores de entrada para los cuales la función está matemáticamente definida.",
-          "Codominio y Rango: El Codominio es el conjunto de llegada \\(B\\). El Rango es el conjunto de todos los valores de salida \\(f(x)\\) que la función realmente toma (siempre es un subconjunto del Codominio).",
-          "Inyectividad (Uno a uno): Una función es inyectiva si a elementos distintos del dominio les corresponden imágenes distintas en el codominio. Se cumple que si \\(f(a) = f(b) \\implies a = b\\). Gráficamente se comprueba con la prueba de la recta horizontal.",
-          "Sobreyectividad (Sobre): Una función es sobreyectiva si su rango es igual a su codominio, es decir, cada elemento de \\(B\\) es imagen de al menos un elemento de \\(A\\).",
-          "Biyectividad: Una función es biyectiva si es inyectiva y sobreyectiva simultáneamente. Esto es indispensable para que la función admita una inversa \\(f^{-1}\\).",
-          "Ejemplo (Dominio): para \\(f(x) = \\frac{\\sqrt{x+3}}{x-2}\\), el dominio es \\([-3, 2) \\cup (2, +\\infty)\\) debido a la raíz y a la división entre cero."
+          "Inyectividad (Uno a uno): Se comprueba geométricamente con la prueba de la recta horizontal.",
+          "Biyectividad: Una función es biyectiva si es inyectiva y sobreyectiva simultáneamente. Esto es indispensable para que la función admita una inversa \\(f^{-1}\\)."
         ]
       },
       {
@@ -448,8 +415,7 @@ export const CATEGORIAS = [
         definicion: "Una función matemática puede representarse y analizarse a través de cinco formas de expresión alternativas:\n\n1. Verbal: Explicación directa con palabras.\n2. Algebraica: Mediante una ecuación o fórmula analítica.\n3. Tabular: Usando una tabla con pares ordenados de valores.\n4. Gráfica: Trazando curvas en el plano cartesiano de coordenadas.\n5. Sagital: Mediante diagramas de conjuntos con flechas dirigidas.",
         formula: "f = \\{(x, y) \\in A \\times B \\mid y = f(x)\\}",
         notas: [
-          "Ejemplo Lineal (f(x) = 2x - 1): Verbal: 'el doble de un número menos uno'. Algebraica: \\(f(x) = 2x - 1, x \\in \\{1, 2, 3\\}\\). Tabular: \\(\\{(1, 1), (2, 3), (3, 5)\\}\\). Gráfica: Puntos alineados en una recta. Sagital: Un elemento del dominio se conecta con una única imagen (mapeo uno a uno).",
-          "Ejemplo Cuadrático (f(x) = x²): Verbal: 'el cuadrado de un número'. Algebraica: \\(f(x) = x^2, x \\in \\{-2, -1, 0, 1, 2\\}\\). Tabular: \\(\\{(-2, 4), (-1, 1), (0, 0), (1, 1), (2, 4)\\}\\). Gráfica: Parábola simétrica respecto al eje Y. Sagital: Dos elementos distintos del dominio (como -2 y 2) pueden apuntar al mismo valor del codominio (4), mostrando que no es inyectiva."
+          "Ejemplo Lineal (f(x) = 2x - 1): Verbal: 'el doble de un número menos uno'. Algebraica: \\(f(x) = 2x - 1, x \\in \\{1, 2, 3\\}\\). Tabular: \\(\\{(1, 1), (2, 3), (3, 5)\\}\\). Gráfica: Puntos alineados en una recta."
         ]
       },
       {
@@ -489,8 +455,7 @@ export const CATEGORIAS = [
           colorAuto: false
         },
         notas: [
-          "Ángulos notables: \\(\\sen(30^\\circ)=1/2\\), \\(\\cos(\\pi/3)=1/2\\), \\(\\tg(45^\\circ)=1\\).",
-          "Ejemplo: Si \\(\\cos(\\theta) = -5/13\\) en el segundo cuadrante, entonces \\(\\sen(\\theta) = \\frac{12}{13}\\) y \\(\\tg(\\theta) = -\\frac{12}{5}\\)."
+          "Ángulos notables: \\(\\sen(30^\\circ)=1/2\\), \\(\\cos(\\pi/3)=1/2\\), \\(\\tg(45^\\circ)=1\\)."
         ]
       },
       {
@@ -511,9 +476,7 @@ export const CATEGORIAS = [
           colorAuto: false
         },
         notas: [
-          "Identidad fundamental hiperbólica: A diferencia de la identidad pitagórica circular, en las funciones hiperbólicas se cumple que \\(\\cosh^2(x) - \\senh^2(x) = 1\\).",
-          "Las recíprocas se definen de manera análoga: \\(\\coth(x) = 1/\\tgh(x)\\), \\(\\sech(x) = 1/\\cosh(x)\\), y \\(\\csch(x) = 1/\\senh(x)\\).",
-          "Aplicación física (Catenaria): Un cable colgante flexible de peso uniforme sujeto por sus extremos adopta la forma de una curva llamada catenaria, cuya ecuación matemática es de la forma \\(y = a \\cosh(x/a)\\)."
+          "Identidad fundamental hiperbólica: \\(\\cosh^2(x) - \\senh^2(x) = 1\\)."
         ]
       },
       {
@@ -523,17 +486,7 @@ export const CATEGORIAS = [
         formula: "\\text{Funciones y Trigonometría}",
         notas: [
           "1. Dominio: \\(f(x)=\\sqrt{4-x^2} \\implies 4-x^2 \\geq 0 \\implies x \\in [-2, 2]\\).",
-          "2. Dominio: \\(g(x)=\\frac{x+1}{x^2-4} \\implies x^2-4 \\neq 0 \\implies x \\in \\mathbb{R} \\setminus \\{-2, 2\\}\\).",
-          "3. Evaluación: Si \\(h(x)=x^2-3x\\): \\(h(0)=0\\), \\(h(2)=-2\\), \\(h(a-1)=a^2-5a+4\\).",
-          "4. Interceptos: \\(f(x)=-2x+4\\) tiene intercepto X en \\((2,0)\\) e intercepto Y en \\((0,4)\\).",
-          "5. Cuadrática: \\(f(x)=-x^2+4x-3\\) tiene vértice en \\(V(2,1)\\) y raíces en \\(1\\) y \\(3\\).",
-          "6. Paridad: \\(f(x)=x^4\\) es par; \\(f(x)=x^3-x\\) es impar (\\(f(-x)=-f(x)\\)).",
-          "7. Dominio mixto: \\(f(x)=\\sqrt x/(x^2-x-6)\\) requiere \\(x \\geq 0\\) y \\(x \\neq 3\\), por lo que \\(Dom = [0,2) \\cup (2,3) \\cup (3,+\\infty)\\).",
-          "8. Asíntotas: \\(f(x)=\\frac{2x-1}{x+3}\\) tiene asíntota vertical en \\(x=-3\\) y asíntota horizontal en \\(y=2\\).",
-          "9. Composición: Si \\(f(x)=2x-3\\) y \\(g(x)=x^2+1\\): \\((f \\circ g)(x) = 2x^2-1\\), \\((g \\circ f)(x) = 4x^2-12x+10\\).",
-          "10. Aplicación área máxima: \\(A(x)=x(20-x)\\). Área máxima en el vértice \\(x=10\\) m (área máxima \\(100\\) m\\(^2\\)).",
-          "11. Aplicación telefonía: Costo \\(C(m)=150+2m\\); \\(C(120)=\\$390\\).",
-          "12. Frenado: \\(d(v)=0.0056v^2+0.14v\\); \\(d(80) = 47.04\\) m."
+          "2. Dominio: \\(g(x)=\\frac{x+1}{x^2-4} \\implies x^2-4 \\neq 0 \\implies x \\in \\mathbb{R} \\setminus \\{-2, 2\\}\\)."
         ]
       }
     ]
@@ -546,34 +499,33 @@ export const CATEGORIAS = [
     temas: [
       {
         id: "definicion_propiedades_log",
-        titulo: "Logaritmos",
-        graficoId: "logaritmos_plotter",
-        definicion: "El logaritmo es la función inversa de la exponencial. El logaritmo en base \\(b\\) de \\(x\\) es el exponente \\(y\\) al cual se debe elevar la base \\(b\\) para obtener \\(x\\). Sus propiedades algebraicas simplifican operaciones complejas reduciendo multiplicaciones a sumas y divisiones a restas.",
-        formula: "\\log_b (x) = y \\iff b^y = x",
+        titulo: "Logaritmos y Cambio de Base",
+        graficoId: "logaritmos_interactivo",
+        definicion: "El logaritmo es la función inversa de la exponencial. El logaritmo en base \\(b\\) de \\(x\\) es el exponente \\(y\\) al cual se debe elevar la base \\(b\\) para obtener \\(x\\).\n\nFórmula de Cambio de Base:\nPermite calcular un logaritmo en cualquier base \\(b\\) (con \\(b > 0, b \\neq 1\\)) convirtiéndolo a logaritmo natural (\\(\\ln\\)) o logaritmo decimal (\\(\\log_{10}\\)):\n\\(\\log_b(M) = \\frac{\\ln M}{\\ln b} = \\frac{\\log_{10} M}{\\log_{10} b}\\)\nEjemplo: \\(\\log_7(50) = \\frac{\\ln 50}{\\ln 7} \\approx \\frac{3.9120}{1.9459} \\approx 2.0103\\).",
+        formula: "\\log_b (M) = \\frac{\\ln M}{\\ln b} \\iff b^y = M",
         tabla: {
-          titulo: "Propiedades fundamentales",
-          encabezados: ["Propiedad", "Fórmula", "Ejemplo"],
+          titulo: "Propiedades fundamentales de los Logaritmos",
+          encabezados: ["Propiedad", "Fórmula", "Ejemplo práctico"],
           filas: [
+            ["Fórmula de Cambio de base", "\\(\\log_b M = \\frac{\\ln M}{\\ln b}\\)", "\\(\\log_7 50 = \\frac{\\ln 50}{\\ln 7} \\approx 2.01\\)"],
             ["Producto", "\\(\\log_b(MN) = \\log_b M + \\log_b N\\)", "\\(\\log(6) = \\log(2) + \\log(3)\\)"],
             ["Cociente", "\\(\\log_b(\\frac{M}{N}) = \\log_b M - \\log_b N\\)", "\\(\\ln(\\frac{e^2}{3}) = 2 - \\ln(3)\\)"],
             ["Potencia", "\\(\\log_b(M^p) = p \\cdot \\log_b M\\)", "\\(\\log(100^3) = 6\\)"],
-            ["Cambio de base", "\\(\\log_b M = \\frac{\\ln M}{\\ln b}\\)", "\\(\\log_7 50 = \\frac{\\ln 50}{\\ln 7} \\approx 2.01\\)"],
             ["Neutros", "\\(\\log_b b = 1\\) y \\(\\log_b 1 = 0\\)", "\\(\\ln e = 1\\) y \\(\\log 1 = 0\\)"],
-            ["Identidad inversa", "\\(b^{\\log_b M} = M\\) y \\(\\log_b b^x = x\\)", "\\(10^{\\log 7} = 7\\) y \\(\\ln(e^3) = 3\\)"],
           ],
-          resaltadas: [0, 1, 2, 3],
+          resaltadas: [0],
           colorAuto: false
         }
       },
       {
         id: "ecuaciones_exponenciales",
-        titulo: "Ecuaciones",
-        definicion: "• Ecuaciones exponenciales: la incógnita se encuentra en el exponente. Se resuelven igualando bases o aplicando logaritmos naturales en ambos lados.\n• Ecuaciones logarítmicas: la incógnita está en el argumento de un logaritmo. Se resuelven utilizando inyectividad o la definición para convertir a forma exponencial. Siempre se debe verificar que la solución esté en el dominio.",
-        formula: "b^{f(x)} = c \\implies f(x) = \\log_b(c)",
+        titulo: "Ecuaciones con Distinta Base",
+        graficoId: "logaritmos_interactivo",
+        definicion: "Ecuaciones exponenciales y logarítmicas con distintas bases:\n\n1. Exponenciales de distinta base (\\(a^{f(x)} = b^{g(x)}\\)): Se aplica logaritmo natural en ambos lados para bajar los exponentes mediante la propiedad de la potencia.\nEjemplo: \\(3^x = 2^{x+1} \\implies x \\ln 3 = (x+1)\\ln 2 \\implies x(\\ln 3 - \\ln 2) = \\ln 2 \\implies x = \\frac{\\ln 2}{\\ln 3 - \\ln 2} \\approx 1.7095\\).\n\n2. Logarítmicas de distinta base (\\(\\log_a x = \\log_b k\\)): Se unifica la base aplicando el cambio de base.\nEjemplo: \\(\\log_4 x = \\log_2 9 \\implies \\frac{\\log_2 x}{\\log_2 4} = \\log_2 9 \\implies \\frac{\\log_2 x}{2} = \\log_2 9 \\implies \\log_2 x = \\log_2(81) \\implies x = 81\\).",
+        formula: "a^{f(x)} = b^{g(x)} \\implies f(x) \\ln a = g(x) \\ln b",
         notas: [
-          "Ejemplo misma base: \\(\\log(x+2) + \\log(x-1) = 1 \\implies (x+2)(x-1) = 10 \\implies x^2+x-12=0 \\implies x=3\\) (se descarta \\(x=-4\\)).",
-          "Ejemplo bases diferentes: \\(3^x = 2^{x+1} \\implies x\\ln(3) = (x+1)\\ln(2) \\implies x = \\frac{\\ln(2)}{\\ln(3)-\\ln(2)} \\approx 1.71\\).",
-          "Ejemplo cuadrática exponencial: \\(e^{2x} - 5e^x + 6 = 0 \\implies (e^x - 2)(e^x - 3) = 0 \\implies x = \\ln(2) \\lor x = \\ln(3)\\)."
+          "Ejemplo Exponencial con distinta base: \\(5^{x-1} = 3^x \\implies (x-1)\\ln 5 = x \\ln 3 \\implies x(\\ln 5 - \\ln 3) = \\ln 5 \\implies x = \\frac{\\ln 5}{\\ln 5 - \\ln 3} \\approx 3.1507\\).",
+          "Ejemplo Logarítmico con distinta base: \\(\\log_3 x + \\log_9 x = 3 \\implies \\log_3 x + \\frac{\\log_3 x}{2} = 3 \\implies \\frac{3}{2}\\log_3 x = 3 \\implies \\log_3 x = 2 \\implies x = 9\\)."
         ]
       },
       {
@@ -584,9 +536,7 @@ export const CATEGORIAS = [
         notas: [
           "Química (escala de pH): mide acidez mediante la concentración de hidrógeno \\(\\text{pH} = -\\log_{10}[H^+]\\).",
           "Acústica (escala de decibeles): nivel sonoro de intensidad \\(I\\) expresado como \\(\\beta = 10 \\log_{10}(I/I_0)\\) con \\(I_0 = 10^{-12} \\text{ W/m}^2\\).",
-          "Sismología (escala de Richter): magnitud de sismos \\(M = \\log_{10}(A/A_0)\\), donde 2 grados de diferencia indican un factor de 100 en amplitud.",
-          "Arqueología (vida media de C-14): cantidad restante \\(N(t) = N_0 e^{-kt}\\), con vida media de 5730 años (\\(k = \\frac{\\ln(2)}{5730}\\)).",
-          "Finanzas (interés continuo): valor acumulado \\(A = C_0 e^{rt}\\), donde el tiempo de duplicación se calcula como \\(t = \\frac{\\ln 2}{r}\\)."
+          "Sismología (escala de Richter): magnitud de sismos \\(M = \\log_{10}(A/A_0)\\)."
         ]
       },
       {
@@ -595,24 +545,9 @@ export const CATEGORIAS = [
         definicion: "Practica resolviendo los ejercicios propuestos del capítulo de Logaritmos en la antología para evaluar tu aprendizaje.",
         formula: "\\text{Logaritmos y Exponenciales}",
         notas: [
-          "1. Convierte: \\(\\log_4 64=3 \\iff 4^3=64\\).",
-          "2. Convierte: \\(5^{-2}=1/25 \\iff \\log_5(1/25)=-2\\).",
-          "3. Calcula: \\(\\log_{27}9 = 2/3\\), \\(\\log_8 4 = 2/3\\), \\(\\log 0.01 = -2\\).",
-          "4. Expande: \\(\\log_2(x^3/\\sqrt y) = 3\\log_2 x - \\frac{1}{2}\\log_2 y\\).",
-          "5. Junta: \\(2\\log x-3\\log y+\\log z = \\log(x^2 z / y^3)\\).",
-          "6. Resuelve: \\(\\log_4(x+3)=2 \\implies x+3=16 \\implies x=13\\).",
-          "7. Resuelve: \\(\\log(x-1)+\\log(x+2)=1 \\implies x^2+x-12=0 \\implies x=3\\) (se descarta \\(x=-4\\)).",
-          "8. Resuelve: \\(\\ln(x+1)-\\ln x=\\ln3 \\implies \\frac{x+1}{x}=3 \\implies x=1/2\\).",
-          "9. Resuelve: \\(5^{2x+1}=25^{x-1} \\implies 2x+1=2x-2 \\implies\\) sin solución.",
-          "10. Resuelve: \\(2^x=13 \\implies x = \\frac{\\ln 13}{\\ln 2} \\approx 3.70\\).",
-          "11. Resuelve cuadrática: \\(e^{2x}-7e^x+10=0 \\implies (e^x-2)(e^x-5)=0 \\implies x=\\ln 2 \\lor x=\\ln 5\\).",
-          "12. Resuelve misma base: \\(\\log_6(5x-4)=\\log_6(x+8) \\implies 5x-4=x+8 \\implies x=3\\).",
-          "13. Resuelve bases diferentes: \\(\\log_4 x = \\log_2 9 \\implies x = 81\\).",
-          "14. pH: Para \\([H^+]=3.5\\times10^{-4}\\), \\(pH = -\\log_{10}(3.5\\times10^{-4}) \\approx 3.46\\).",
-          "15. Interés continuo: Crece al 8% anual continuo, se duplica en \\(t = \\ln 2 / 0.08 \\approx 8.66\\) años.",
-          "16. Duplicación bacterias: Inicia en 500 y se duplica cada 3 h. Llega a 32,000 en \\(t = 3\\log_2(64) = 18\\) horas.",
-          "17. Decibeles: Sonido de intensidad \\(10^{-4}\\) W/m\\(^2\\) equivale a \\(\\beta = 10\\log_{10}(10^{-4}/10^{-12}) = 80\\) dB.",
-          "18. Triplicar capital al 5%: \\(3 = e^{0.05t} \\implies t = \\ln 3 / 0.05 \\approx 21.97\\) años."
+          "1. Aplica cambio de base: \\(\\log_7 50 = \\frac{\\ln 50}{\\ln 7} \\approx 2.0103\\).",
+          "2. Resuelve distinta base: \\(3^x = 2^{x+1} \\implies x = \\frac{\\ln 2}{\\ln 3 - \\ln 2} \\approx 1.71\\).",
+          "3. Resuelve distinta base logarítmica: \\(\\log_4 x = \\log_2 9 \\implies x = 81\\)."
         ]
       }
     ]
@@ -623,7 +558,7 @@ export const CATEGORIAS = [
 // BANCO DE EVALUACIÓN (QUIZZES)
 // ════════════════════════════════════════════════════════════════════════════
 export const QUIZZES = [
-  // ARITMÉTICA (id: aritmetica)
+  // ARITMÉTICA
   {
     nivel: "aritmetica",
     pregunta: "Evalúa la siguiente expresión aritmética aplicando la jerarquía de operaciones: \\(8 + 3 \\times 2 - (4 + 1)\\)",
@@ -633,178 +568,81 @@ export const QUIZZES = [
   },
   {
     nivel: "aritmetica",
-    pregunta: "Determina el resultado de evaluar la expresión con valor absoluto: \\(|3 - 8| + |-2 \\cdot 5|\\)",
-    opciones: ["15", "5", "-5", "25"],
-    correcta: 0,
-    explicacion: "Calculamos los valores absolutos por separado: \\(|3 - 8| = |-5| = 5\\), y \\(|-2 \\cdot 5| = |-10| = 10\\). Sumando ambos resultados obtenemos: \\(5 + 10 = 15\\)."
+    pregunta: "Simplifica el radical numérico mediante factorización prima de su radicando: \\(\\sqrt{180}\\)",
+    opciones: ["\\(30\\)", "\\(6\\sqrt{5}\\)", "\\(5\\sqrt{6}\\)", "\\(12\\sqrt{5}\\)"],
+    correcta: 1,
+    explicacion: "Descomponemos en factores primos: \\(180 = 2^2 \\cdot 3^2 \\cdot 5\\). Extraemos los cuadrados perfectos: \\(\\sqrt{2^2 \\cdot 3^2 \\cdot 5} = 2 \\cdot 3 \\sqrt{5} = 6\\sqrt{5}\\)."
   },
   {
     nivel: "aritmetica",
-    pregunta: "Simplifica la expresión utilizando las leyes de los exponentes: \\(\\left(\\frac{2^3 \\cdot 2^{-1}}{2^4}\\right)^2\\)",
-    opciones: ["\\(4\\)", "\\(\\frac{1}{4}\\)", "\\(1\\)", "\\(\\frac{1}{16}\\)"],
-    correcta: 3,
-    explicacion: "Simplificamos la fracción interna: \\(\\frac{2^{3 - 1}}{2^4} = \\frac{2^2}{2^4} = 2^{2 - 4} = 2^{-2}\\). Elevamos ahora al cuadrado: \\((2^{-2})^2 = 2^{-4} = \\frac{1}{2^4} = \\frac{1}{16}\\)."
-  },
-  {
-    nivel: "aritmetica",
-    pregunta: "Calcula el valor exacto del número real con exponente racional: \\(8^{2/3}\\)",
-    opciones: ["\\(4\\)", "\\(\\frac{16}{3}\\)", "\\(2\\)", "\\(16\\)"],
+    pregunta: "Calcula el resultado exacto de la siguiente operación numérica con radicales: \\(3\\sqrt{12} + 5\\sqrt{27} - 2\\sqrt{48}\\)",
+    opciones: ["\\(13\\sqrt{3}\\)", "\\(6\\sqrt{3}\\)", "\\(19\\sqrt{3}\\)", "\\(10\\sqrt{3}\\)"],
     correcta: 0,
-    explicacion: "Un exponente racional representa raíz y potencia: \\(a^{m/n} = (\\sqrt[n]{a})^m\\). En este caso: \\(8^{2/3} = (\\sqrt[3]{8})^2 = 2^2 = 4\\)."
-  },
-  {
-    nivel: "aritmetica",
-    pregunta: "Resuelve la proporción lineal: \\(\\frac{x + 1}{5} = \\frac{x - 2}{3}\\)",
-    opciones: ["\\(x = 6.5\\)", "\\(x = 13\\)", "\\(x = 1.5\\)", "\\(x = 7.5\\)"],
-    correcta: 0,
-    explicacion: "Multiplicamos de forma cruzada: \\(3(x+1) = 5(x-2) \\implies 3x + 3 = 5x - 10 \\implies 13 = 2x \\implies x = 13/2 = 6.5\\)."
-  },
-  {
-    nivel: "aritmetica",
-    pregunta: "Al racionalizar el denominador de la expresión algebraica \\(\\frac{6}{\\sqrt{7}-1}\\), se obtiene:",
-    opciones: ["\\(\\sqrt{7}+1\\)", "\\(6(\\sqrt{7}+1)\\)", "\\(\\frac{\\sqrt{7}+1}{2}\\)", "\\(3\\sqrt{7}-3\\)"],
-    correcta: 0,
-    explicacion: "Multiplicamos numerador y denominador por el conjugado \\(\\sqrt{7}+1\\): \\(\\frac{6(\\sqrt{7}+1)}{(\\sqrt{7}-1)(\\sqrt{7}+1)} = \\frac{6(\\sqrt{7}+1)}{7-1} = \\frac{6(\\sqrt{7}+1)}{6} = \\sqrt{7}+1\\)."
+    explicacion: "Simplificamos cada radical: \\(3\\sqrt{12} = 6\\sqrt{3}\\), \\(5\\sqrt{27} = 15\\sqrt{3}\\), y \\(2\\sqrt{48} = 8\\sqrt{3}\\). Sumando semejantes: \\(6\\sqrt{3} + 15\\sqrt{3} - 8\\sqrt{3} = 13\\sqrt{3}\\)."
   },
 
-  // ÁLGEBRA (id: algebra)
+  // ÁLGEBRA
   {
     nivel: "algebra",
-    pregunta: "Desarrolla el producto notable utilizando binomio al cuadrado: \\((4x - 3y)^2\\)",
-    opciones: ["\\(16x^2 - 9y^2\\)", "\\(16x^2 - 12xy + 9y^2\\)", "\\(16x^2 - 24xy + 9y^2\\)", "\\(16x^2 + 24xy + 9y^2\\)"],
-    correcta: 2,
-    explicacion: "Usamos la regla \\((a-b)^2 = a^2 - 2ab + b^2\\): \\((4x)^2 - 2(4x)(3y) + (3y)^2 = 16x^2 - 24xy + 9y^2\\)."
-  },
-  {
-    nivel: "algebra",
-    pregunta: "Factoriza por completo la expresión de cuarto grado: \\(x^4 - 16\\)",
-    opciones: ["\\((x^2 + 4)(x - 2)^2\\)", "\\((x^2 + 4)(x + 2)(x - 2)\\)", "\\((x - 2)^4\\)", "\\((x^2 - 4)(x^2 + 4)\\)"],
+    pregunta: "¿Qué volumen total representa la demostración geométrica del desarrollo del binomio al cubo \\((a + b)^3\\)?",
+    opciones: ["\\(a^3 + b^3\\)", "\\(a^3 + 3a^2b + 3ab^2 + b^3\\)", "\\(a^3 + a^2b + ab^2 + b^3\\)", "\\(a^3 + 2a^2b + 2ab^2 + b^3\\)"],
     correcta: 1,
-    explicacion: "Primero aplicamos diferencia de cuadrados: \\(x^4 - 16 = (x^2+4)(x^2-4)\\). Luego factorizamos la segunda diferencia de cuadrados: \\(x^2-4 = (x+2)(x-2)\\). Juntando todo queda: \\((x^2+4)(x+2)(x-2)\\)."
+    explicacion: "Un cubo de arista \\((a+b)\\) se subdivide geométricamente en 8 bloques: 1 cubo de \\(a^3\\), 3 prismas de \\(a^2b\\), 3 prismas de \\(ab^2\\) y 1 cubo de \\(b^3\\)."
   },
   {
     nivel: "algebra",
-    pregunta: "Resuelve la ecuación cuadrática por factorización o fórmula general: \\(3x^2 - 5x - 2 = 0\\)",
-    opciones: ["\\(x = 2, x = -\\frac{1}{3}\\)", "\\(x = -2, x = \\frac{1}{3}\\)", "\\(x = 3, x = -\\frac{2}{3}\\)", "\\(x = 2, x = -3\\)"],
+    pregunta: "Aplica División Sintética (Regla de Ruffini) para hallar el cociente y comprobar si \\(x = 1\\) es raíz del polinomio \\(P(x) = x^3 - 6x^2 + 11x - 6\\):",
+    opciones: [
+      "Cociente \\(Q(x) = x^2 - 5x + 6\\), Residuo \\(R = 0\\) (Es raíz)",
+      "Cociente \\(Q(x) = x^2 + 5x + 6\\), Residuo \\(R = 2\\) (No es raíz)",
+      "Cociente \\(Q(x) = x^2 - 6x + 5\\), Residuo \\(R = 0\\) (Es raíz)",
+      "Cociente \\(Q(x) = x^2 - 4x + 3\\), Residuo \\(R = -1\\) (No es raíz)"
+    ],
     correcta: 0,
-    explicacion: "Factorizando el trinomio general: \\(3x^2-5x-2 = (3x+1)(x-2) = 0\\). Las soluciones son \\(x - 2 = 0 \\implies x = 2\\) y \\(3x + 1 = 0 \\implies x = -1/3\\)."
-  },
-  {
-    nivel: "algebra",
-    pregunta: "Resuelve la ecuación \\(4x^2 + 4x + 1 = 0\\) e interpreta el valor de su discriminante.",
-    opciones: ["\\(x = -\\frac{1}{2}\\) (raíz única doble, discriminante \\(\\Delta = 0\\))", "\\(x = -\\frac{1}{2}, x = \\frac{1}{2}\\) (dos raíces, \\(\\Delta > 0\\))", "No tiene soluciones reales (discriminante \\(\\Delta < 0\\))", "\\(x = -1\\) (raíz única doble, discriminante \\(\\Delta = 0\\))"],
-    correcta: 0,
-    explicacion: "El discriminante es \\(\\Delta = b^2 - 4ac = 16 - 16 = 0\\). Al ser cero, indica una única solución real doble. Usando la fórmula general: \\(x = \\frac{-4}{8} = -1/2\\)."
-  },
-  {
-    nivel: "algebra",
-    pregunta: "Calcula el valor numérico del término independiente de \\(x\\) en el desarrollo binomial: \\(\\left(x + \\frac{1}{x}\\right)^6\\)",
-    opciones: ["15", "20", "1", "6"],
-    correcta: 1,
-    explicacion: "El término general del binomio es \\(T_{k+1} = \\binom{6}{k} x^{6-k} (x^{-1})^k = \\binom{6}{k} x^{6-2k}\\). Para que sea independiente, \\(6-2k = 0 \\implies k = 3\\). El coeficiente es \\(\\binom{6}{3} = \\frac{6 \\cdot 5 \\cdot 4}{3 \\cdot 2 \\cdot 1} = 20\\)."
-  },
-  {
-    nivel: "algebra",
-    pregunta: "Simplifica la fracción algebraica compleja utilizando factorización: \\(\\frac{x^3 - 8}{x^2 - 4}\\)",
-    opciones: ["\\(\\frac{x^2 + 2x + 4}{x + 2}\\)", "\\(\\frac{x^2 - 2x + 4}{x - 2}\\)", "\\(\\frac{x^2 + 4}{x + 2}\\)", "\\(x - 2\\)"],
-    correcta: 0,
-    explicacion: "El numerador es una diferencia de cubos: \\(x^3 - 8 = (x - 2)(x^2 + 2x + 4)\\). El denominador es una diferencia de cuadrados: \\(x^2 - 4 = (x - 2)(x + 2)\\). Cancelando el término común \\(x - 2\\) resulta \\(\\frac{x^2 + 2x + 4}{x + 2}\\)."
-  },
-  {
-    nivel: "algebra",
-    pregunta: "Encuentra los primeros tres términos de la expansión en serie binomial de \\((1+x)^{-4}\\) para \\(|x| < 1\\).",
-    opciones: ["\\(1 - 4x + 6x^2\\)", "\\(1 - 4x + 10x^2\\)", "\\(1 - 4x + 16x^2\\)", "\\(1 + 4x + 10x^2\\)"],
-    correcta: 1,
-    explicacion: "Usamos el binomio generalizado: \\((1+x)^r = 1 + rx + \\frac{r(r-1)}{2}x^2 + \\dots\\). Para \\(r = -4\\) obtenemos: \\(1 - 4x + \\frac{-4(-5)}{2}x^2 = 1 - 4x + 10x^2\\)."
+    explicacion: "Colocamos coeficientes \\((1, -6, 11, -6)\\) y probamos \\(c = 1\\): bajamos 1; \\(1 \\times 1 = 1\\), \\(-6+1 = -5\\); \\(-5 \\times 1 = -5\\), \\(11-5 = 6\\); \\(6 \\times 1 = 6\\), \\(-6+6 = 0\\). Residuo \\(0\\), cociente \\(x^2 - 5x + 6\\)."
   },
 
-  // DESIGUALDADES (id: desigualdades)
+  // DESIGUALDADES
   {
     nivel: "desigualdades",
-    pregunta: "Resuelve la inecuación lineal doble y expresa el resultado en intervalo: \\(-1 \\leq 2x + 3 < 7\\)",
-    opciones: ["\\([-2, 2)\\)", "\\((-2, 2]\\)", "\\([-1, 5)\\)", "\\([-2, 5)\\)"],
+    pregunta: "Resuelve la inecuación lineal doble \\(-1 \\leq 2x + 3 < 7\\) e identifica su tipo de intervalo:",
+    opciones: ["\\([-2, 2)\\) (Intervalo semiabierto)", "\\((-2, 2]\\) (Intervalo semiabierto)", "\\([-2, 2]\\) (Intervalo cerrado)", "\\((-2, 2)\\) (Intervalo abierto)"],
     correcta: 0,
-    explicacion: "Restamos 3 en los tres miembros: \\(-4 \\leq 2x < 4\\). Dividimos entre 2: \\(-2 \\leq x < 2\\). Esto se representa como el intervalo semiabierto \\([-2, 2)\\)."
-  },
-  {
-    nivel: "desigualdades",
-    pregunta: "Determina la solución de la inecuación con valor absoluto: \\(|2x - 1| < 5\\)",
-    opciones: ["\\((-3, 3)\\)", "\\((-2, 3)\\)", "\\([-2, 3]\\)", "\\((-\\infty, -2) \\cup (3, \\infty)\\)"],
-    correcta: 1,
-    explicacion: "La inecuación se reescribe como: \\(-5 < 2x - 1 < 5\\). Sumando 1 obtenemos \\(-4 < 2x < 6\\). Dividiendo entre 2 resulta \\(-2 < x < 3\\), es decir, \\((-2, 3)\\)."
-  },
-  {
-    nivel: "desigualdades",
-    pregunta: "Resuelve la inecuación cuadrática mediante análisis de intervalos: \\(x^2 - 2x - 3 \\geq 0\\)",
-    opciones: ["\\([-1, 3]\\)", "\\((-\\infty, -1] \\cup [3, \\infty)\\)", "\\((-\\infty, -3] \\cup [1, \\infty)\\)", "\\((-1, 3)\\)"],
-    correcta: 1,
-    explicacion: "Factorizamos la inecuación cuadrática: \\((x - 3)(x + 1) \\geq 0\\). Los puntos críticos son \\(x = 3\\) y \\(x = -1\\). Analizando los signos en los intervalos formados, resulta positiva en \\((-\\infty, -1]\\) y \\([3, \\infty)\\)."
-  },
-  {
-    nivel: "desigualdades",
-    pregunta: "Resuelve la inecuación racional tomando en cuenta las restricciones: \\(\\frac{x - 3}{x + 2} \\geq 0\\)",
-    opciones: ["\\((-\\infty, -2) \\cup [3, \\infty)\\)", "\\((-\\infty, -2] \\cup [3, \\infty)\\)", "\\((-2, 3]\\)", "\\([-2, 3]\\)"],
-    correcta: 0,
-    explicacion: "Los puntos críticos son \\(x = 3\\) (numerador) y \\(x = -2\\) (denominador). Como no es posible la división entre cero, el punto crítico \\(-2\\) debe ser excluido del intervalo (abierto). Analizando signos obtenemos \\((-\\infty, -2) \\cup [3, \\infty)\\)."
+    explicacion: "Restando 3: \\(-4 \\leq 2x < 4\\). Dividiendo entre 2: \\(-2 \\leq x < 2\\). Equivale al intervalo semiabierto \\([-2, 2)\\)."
   },
 
-  // FUNCIONES (id: funciones)
+  // FUNCIONES
   {
     nivel: "funciones",
-    pregunta: "Halla el dominio de definición matemática de la función racional radical: \\(f(x) = \\frac{\\sqrt{x + 3}}{x - 2}\\)",
-    opciones: ["\\([-3, \\infty)\\)", "\\([-3, 2) \\cup (2, \\infty)\\)", "\\((-3, 2) \\cup (2, \\infty)\\)", "\\(\\mathbb{R} \\setminus \\{2\\}\\)"],
+    pregunta: "Al aplicar la Prueba de la Regleta (Recta Vertical) a la curva \\(x^2 + y^2 = 9\\) (Circunferencia de radio 3), ¿cuál es el resultado?",
+    opciones: [
+      "Es una función porque la regleta corta en exactamente 1 punto.",
+      "NO es una función porque la regleta la interseca en 2 puntos simultáneos.",
+      "Es una función inyectiva uno a uno.",
+      "Es una función cuadrática ordinaria."
+    ],
     correcta: 1,
-    explicacion: "Se requiere que el radicando sea positivo o cero: \\(x + 3 \\geq 0 \\implies x \\geq -3\\). Además, el denominador no puede ser cero: \\(x - 2 \\neq 0 \\implies x \\neq 2\\). Combinando ambas condiciones obtenemos \\([-3, 2) \\cup (2, \\infty)\\)."
-  },
-  {
-    nivel: "funciones",
-    pregunta: "Determina el dominio y rango de la función real: \\(f(x) = \\sqrt{9 - x^2}\\)",
-    opciones: ["Dom: \\([-3, 3]\\), Rango: \\([0, 3]\\)", "Dom: \\([-3, 3]\\), Rango: \\([-3, 3]\\)", "Dom: \\((-\\infty, 3]\\), Rango: \\([0, \\infty)\\)", "Dom: \\([-3, 3]\\), Rango: \\([0, 9]\\)"],
-    correcta: 0,
-    explicacion: "Para el dominio, \\(9 - x^2 \\geq 0 \\implies x^2 \\leq 9 \\implies -3 \\leq x \\leq 3\\). Para el rango, cuando \\(x\\) varía en el dominio, \\(9-x^2\\) varía entre 0 y 9, haciendo que la raíz varíe entre 0 y 3. Rango: \\([0, 3]\\)."
-  },
-  {
-    nivel: "funciones",
-    pregunta: "Encuentra las coordenadas del vértice de la parábola dada por la función: \\(f(x) = -x^2 + 4x - 3\\)",
-    opciones: ["\\(V(2, 1)\\)", "\\(V(2, -1)\\)", "\\(V(-2, -15)\\)", "\\(V(1, 0)\\)"],
-    correcta: 0,
-    explicacion: "La coordenada \\(x\\) del vértice es \\(x_v = \\frac{-b}{2a} = \\frac{-4}{2(-1)} = 2\\). Evaluando \\(x=2\\) en la función: \\(f(2) = -(2)^2 + 4(2) - 3 = -4 + 8 - 3 = 1\\). Por lo tanto, el vértice es \\(V(2, 1)\\)."
-  },
-  {
-    nivel: "funciones",
-    pregunta: "Si \\(\\cos(\\theta) = -\\frac{5}{13}\\) y el ángulo \\(\\theta\\) se encuentra en el segundo cuadrante, calcula la tangente: \\(\\tg(\\theta)\\)",
-    opciones: ["\\(\\frac{12}{5}\\)", "\\(-\\frac{12}{5}\\)", "\\(-\\frac{12}{13}\\)", "\\(\\frac{12}{13}\\)"],
-    correcta: 1,
-    explicacion: "Usando la identidad fundamental, el seno en el segundo cuadrante es positivo: \\(\\sen(\\theta) = \\sqrt{1 - \\cos^2(\\theta)} = \\frac{12}{13}\\). La tangente es el cociente \\(\\tg(\\theta) = \\frac{\\sen(\\theta)}{\\cos(\\theta)} = \\frac{12/13}{-5/13} = -\\frac{12}{5}\\)."
+    explicacion: "Al deslizar la regleta vertical en \\(x = 0\\), corta a la circunferencia en dos puntos \\((0, 3)\\) y \\((0, -3)\\). Al tener múltiples salidas para una entrada, viola la definición de función."
   },
 
-  // LOGARITMOS (id: logaritmos)
+  // LOGARITMOS
   {
     nivel: "logaritmos",
-    pregunta: "Expande la expresión utilizando las propiedades algebraicas de los logaritmos: \\(\\log\\left(\frac{x^2\\sqrt{y}}{z^3}\\right)\\)",
-    opciones: ["\\(2\\log x + \\frac{1}{2}\\log y - 3\\log z\\)", "\\(2\\log x + 2\\log y - 3\\log z\\)", "\\(2\\log x - \\frac{1}{2}\\log y - 3\\log z\\)", "\\(\\frac{2\\log x + 1/2\\log y}{3\\log z}\\)"],
+    pregunta: "Aplica la Fórmula de Cambio de Base para calcular el valor aproximado de \\(\\log_7(50)\\):",
+    opciones: [
+      "\\(\\log_7(50) = \\frac{\\ln 50}{\\ln 7} \\approx 2.0103\\)",
+      "\\(\\log_7(50) = \\frac{\\ln 7}{\\ln 50} \\approx 0.4974\\)",
+      "\\(\\log_7(50) = \\ln(50) - \\ln(7) \\approx 1.9661\\)",
+      "\\(\\log_7(50) = 7 \\cdot \\ln(50) \\approx 27.384\\)"
+    ],
     correcta: 0,
-    explicacion: "Aplicamos propiedades: 1) Cociente: \\(\\log(x^2\\sqrt{y}) - \\log(z^3)\\). 2) Producto: \\(\\log(x^2) + \\log(y^{1/2}) - \\log(z^3)\\). 3) Potencia: \\(2\\log x + \\frac{1}{2}\\log y - 3\\log z\\)."
+    explicacion: "La fórmula de cambio de base establece \\(\\log_b(M) = \\frac{\\ln M}{\\ln b}\\). Sustituyendo: \\(\\frac{\\ln 50}{\\ln 7} \\approx \\frac{3.9120}{1.9459} \\approx 2.0103\\)."
   },
   {
     nivel: "logaritmos",
-    pregunta: "Resuelve la ecuación exponencial con bases diferentes aplicando logaritmo natural: \\(3^x = 2^{x+1}\\)",
-    opciones: ["\\(x = \\frac{\\ln 2}{\\ln 3 - \\ln 2}\\)", "\\(x = \\frac{\\ln 2}{\\ln 3 + \\ln 2}\\)", "\\(x = \\frac{\\ln 3}{\\ln 3 - \\ln 2}\\)", "\\(x = \\ln 2\\)"],
+    pregunta: "Resuelve la ecuación logarítmica con distinta base: \\(\\log_4(x) = \\log_2(9)\\)",
+    opciones: ["\\(x = 81\\)", "\\(x = 9\\)", "\\(x = 18\\)", "\\(x = 27\\)"],
     correcta: 0,
-    explicacion: "Aplicando logaritmo natural en ambos miembros: \\(x \\ln 3 = (x + 1) \\ln 2 \\implies x \\ln 3 = x \\ln 2 + \ln 2 \\implies x(\\ln 3 - \\ln 2) = \\ln 2 \\implies x = \\frac{\\ln 2}{\\ln 3 - \\ln 2}\\)."
-  },
-  {
-    nivel: "logaritmos",
-    pregunta: "Resuelve la ecuación logarítmica con bases distintas: \\(\\log_4 x = \\log_2 9\\)",
-    opciones: ["\\(x = 9\\)", "\\(x = 3\\)", "\\(x = 27\\)", "\\(x = 81\\)"],
-    correcta: 3,
-    explicacion: "Usamos cambio de base: \\(\\log_4 x = \\frac{\\log_2 x}{\\log_2 4} = \\frac{\\log_2 x}{2}\\). Sustituimos en la ecuación: \\(\\frac{\\log_2 x}{2} = \\log_2 9 \\implies \\log_2 x = 2 \\log_2 9 \\implies \\log_2 x = \\log_2(9^2) \\implies x = 81\\)."
-  },
-  {
-    nivel: "logaritmos",
-    pregunta: "Halla los valores reales de \\(x\\) que satisfacen la ecuación cuadrática exponencial: \\(e^{2x} - 5e^x + 6 = 0\\)",
-    opciones: ["\\(x = 2, x = 3\\)", "\\(x = \\ln 2, x = \\ln 3\\)", "\\(x = \\ln 2\\)", "No tiene soluciones reales"],
-    correcta: 1,
-    explicacion: "Sustituyendo \\(u = e^x\\) obtenemos \\(u^2 - 5u + 6 = 0 \\implies (u-2)(u-3) = 0 \\implies u=2\\) o \\(u=3\\). Volviendo a la variable original: \\(e^x = 2 \\implies x = \\ln 2\\) y \\(e^x = 3 \\implies x = \\ln 3\\)."
+    explicacion: "Convertimos \\(\\log_4(x)\\) a base 2 mediante cambio de base: \\(\\frac{\\log_2(x)}{\\log_2(4)} = \\frac{\\log_2(x)}{2}\\). Igualando: \\(\\frac{\\log_2(x)}{2} = \\log_2(9) \\implies \\log_2(x) = 2\\log_2(9) = \\log_2(81) \\implies x = 81\\)."
   }
 ];
