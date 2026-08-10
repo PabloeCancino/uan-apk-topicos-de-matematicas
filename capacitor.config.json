@@ -1,0 +1,13 @@
+{
+  "appId": "mx.uan.topicos_matematicas",
+  "appName": "Tópicos de Matemáticas UAN",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true,
+    "minSdkVersion": 26,
+    "targetSdkVersion": 34
+  }
+}
