@@ -39,7 +39,7 @@ export function GraficoPascal() {
 
       <svg viewBox="0 0 450 260" width="100%" height="100%" style={{ display: "block" }}>
         {/* Dibujar las líneas conectoras entre padres e hijos */}
-        <g stroke={`${C.border}`} strokeWidth="1" strokeDasharray="3 3">
+        <g stroke={`${C.border}`} strokeWidth="2" strokeDasharray="3 3">
           {rows.map((row, n) => {
             if (n === rows.length - 1) return null; // La última fila no tiene hijos en el dibujo
             return row.map((_, k) => {
