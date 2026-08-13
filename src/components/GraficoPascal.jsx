@@ -85,7 +85,7 @@ export function GraficoPascal() {
           return (
             <g key={n}>
               {/* Línea punteada que conecta la fila con su binomio */}
-              <line x1="320" y1={cy} x2="350" y2={cy} stroke={`${C.border}88`} strokeWidth="0.8" strokeDasharray="2 2" />
+              <line x1="320" y1={cy} x2="350" y2={cy} stroke={`${C.border}88`} strokeWidth="2" strokeDasharray="2 2" />
               <text
                 x="360"
                 y={cy + 4}
