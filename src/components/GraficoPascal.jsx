@@ -63,7 +63,7 @@ export function GraficoPascal() {
             return (
               <g key={`${n}-${k}`}>
                 {/* Fondo sólido circular para tapar las líneas tras el texto */}
-                <circle cx={cx} cy={cy} r="14" fill={C.surface} stroke={C.border} strokeWidth="0.5" />
+                <circle cx={cx} cy={cy} r="14" fill={C.surface} stroke={C.border} strokeWidth="2" />
                 <text
                   x={cx}
                   y={cy + 4}
