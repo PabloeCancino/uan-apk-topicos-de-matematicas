@@ -39,6 +39,7 @@ npm run dev
 ## 📄 Licencia y Créditos
 
 Desarrollado en la **Universidad Autónoma de Nayarit** (UAN).  
+Dr. Pablo Eduardo Cancino Marentes
 Investigación Docente en Tecnología Educativa.  
 Programa Académico de Licenciatura en Matemáticas.  
 Unidad Académica de Ciencias Básicas e Ingenierías.  
